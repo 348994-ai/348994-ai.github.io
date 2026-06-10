@@ -1,185 +1,234 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Portal</title>
+<title>Student Portal Pro</title>
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
 body {
-  margin: 0;
-  background: black;
-  color: #00ff88;
-  font-family: monospace;
+    background: #0a0a0a;
+    color: white;
+    overflow: hidden;
 }
 
-/* 代码雨在最底层 */
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
+/* ===== LOADING SCREEN ===== */
+#loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
 }
 
-/* 页面内容在上层 */
-.container {
-  position: relative;
-  z-index: 1;
-  text-align: center;
+.loader {
+    border: 4px solid #222;
+    border-top: 4px solid limegreen;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
 }
 
-/* 首页 */
-#home {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@keyframes spin {
+    100% { transform: rotate(360deg); }
 }
 
-.logo {
-  font-size: 42px;
-  font-weight: bold;
-  cursor: pointer;
+/* ===== SIDEBAR ===== */
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
 }
 
-/* 菜单 */
-#menu, #games {
-  display: none;
-  padding-top: 80px;
+.icon {
+    margin: 20px 0;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.title {
-  font-size: 30px;
-  margin-bottom: 30px;
-  font-weight: bold;
+.icon:hover {
+    color: limegreen;
+    transform: scale(1.2);
 }
 
-.btn {
-  display: block;
-  margin: 12px auto;
-  padding: 12px;
-  width: 260px;
-  border: 1px solid #00ff88;
-  cursor: pointer;
-  transition: 0.2s;
+/* ===== MAIN ===== */
+#main {
+    margin-left: 80px;
+    height: 100vh;
+    padding: 30px;
 }
 
-.btn:hover {
-  background: #00ff88;
-  color: black;
+/* HEADER */
+header {
+    font-size: 28px;
+    font-weight: bold;
 }
 
-/* Game页 */
-.bigW {
-  font-size: 120px;
-  font-weight: bold;
-  margin-bottom: 20px;
+/* W BACKGROUND */
+#wbg {
+    position: absolute;
+    font-size: 400px;
+    font-weight: 900;
+    color: limegreen;
+    opacity: 0.05;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
 }
 
+/* GAME CARDS */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: limegreen;
+    box-shadow: 0 0 20px rgba(0,255,0,0.2);
+}
+
+/* GAME WINDOW */
+#gamePage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: none;
+}
+
+#wBig {
+    position: absolute;
+    font-size: 300px;
+    font-weight: 900;
+    color: limegreen;
+    opacity: 0.15;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+iframe {
+    position: absolute;
+    width: 90%;
+    height: 85%;
+    top: 7%;
+    left: 5%;
+    border: none;
+    border-radius: 10px;
+}
+
+/* BACK BUTTON */
+#back {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 10px 15px;
+    background: limegreen;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+}
 </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
-
-<div class="container">
-
-<!-- 首页 -->
-<div id="home">
-  <div class="logo" onclick="goMenu()">ENTER</div>
+<!-- LOADING -->
+<div id="loading">
+    <div class="loader"></div>
+    <p style="margin-top:20px;">Loading Portal...</p>
 </div>
 
-<!-- 菜单 -->
-<div id="menu">
-  <div class="title">Welcome</div>
-
-  <div class="btn" onclick="openLink('https://discord.com')">Discord</div>
-  <div class="btn" onclick="openLink('https://instagram.com')">Instagram</div>
-  <div class="btn" onclick="openLink('https://mail.google.com')">Gmail</div>
-  <div class="btn" onclick="openLink('https://sites.google.com/stu.wvusd.org/studentportal/home')">Student Portal</div>
-
-  <div class="btn" onclick="goGames()">🎮 Games</div>
+<!-- SIDEBAR -->
+<div id="sidebar">
+    <div class="icon">🏠</div>
+    <div class="icon">🎮</div>
+    <div class="icon">⚙️</div>
 </div>
 
-<!-- 游戏页 -->
-<div id="games">
-  <div class="bigW">W</div>
+<!-- MAIN -->
+<div id="main">
+    <header>Student Portal Pro</header>
 
-  <div class="btn" onclick="openLink('https://poki.com')">Poki</div>
-  <div class="btn" onclick="openLink('https://random-basketball.github.io/')">Basketball Random</div>
-  <div class="btn" onclick="openLink('https://sites.google.com/stu.wvusd.org/tingheilovesqq/home')">tingheilovesqq</div>
-  <div class="btn" onclick="openLink('https://soccer-randomx.github.io/')">Soccer Random</div>
+    <div id="wbg">W</div>
 
-  <div class="btn" onclick="back()">⬅ Back</div>
+    <div class="grid">
+        <div class="card" onclick="openGame()">
+            🎮 Poki Games
+        </div>
+
+        <div class="card">
+            🏀 Basketball Random
+        </div>
+
+        <div class="card">
+            🔥 Trending Games
+        </div>
+
+        <div class="card">
+            ⭐ Favorites
+        </div>
+    </div>
 </div>
 
+<!-- GAME PAGE -->
+<div id="gamePage">
+    <div id="wBig">W</div>
+    <button id="back" onclick="closeGame()">← Back</button>
+
+    <iframe src="https://poki.com"></iframe>
 </div>
 
 <script>
+setTimeout(() => {
+    document.getElementById("loading").style.display = "none";
+}, 1200);
 
-/* 页面切换 */
-function goMenu() {
-  document.getElementById("home").style.display = "none";
-  document.getElementById("menu").style.display = "block";
+function openGame() {
+    document.getElementById("gamePage").style.display = "block";
 }
 
-function goGames() {
-  document.getElementById("menu").style.display = "none";
-  document.getElementById("games").style.display = "block";
+function closeGame() {
+    document.getElementById("gamePage").style.display = "none";
 }
-
-function back() {
-  document.getElementById("games").style.display = "none";
-  document.getElementById("menu").style.display = "block";
-}
-
-function openLink(url) {
-  window.open(url, "_blank");
-}
-
-/* 修复版代码雨 */
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-let letters = "01";
-let fontSize = 14;
-let columns;
-let drops;
-
-function init() {
-  columns = Math.floor(canvas.width / fontSize);
-  drops = Array(columns).fill(1);
-}
-init();
-
-function draw() {
-  ctx.fillStyle = "rgba(0,0,0,0.08)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.fillStyle = "#00ff88";
-  ctx.font = fontSize + "px monospace";
-
-  for (let i = 0; i < drops.length; i++) {
-    let text = letters[Math.floor(Math.random()*letters.length)];
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.97) {
-      drops[i] = 0;
-    }
-
-    drops[i]++;
-  }
-}
-
-setInterval(draw, 40);
-
 </script>
 
 </body>
