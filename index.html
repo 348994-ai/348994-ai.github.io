@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Portal</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: monospace;
+  background: black;
+  color: #00ff00;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 字体更大更粗 */
+h1, h2, p {
+  font-weight: bold;
+}
+
+h1 { font-size: 50px; }
+h2 { font-size: 30px; }
+p { font-size: 18px; }
+
+/* 屏幕切换 */
+.screen {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.active {
+  display: flex;
+}
+
+/* 按钮 */
+button {
+  background: black;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  padding: 12px 25px;
+  margin: 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #00ff00;
+  color: black;
+}
+
+/* 输入框 */
+input {
+  background: black;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* glitch效果 */
+.glitch {
+  animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+  0% {opacity:1;}
+  50% {opacity:0.6;}
+  100% {opacity:1;}
+}
+
+/* 代码雨背景 */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* 图标 */
+.icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: 0 auto 5px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<!-- 页面1 -->
+<div id="screen1" class="screen active">
+  <h1 class="glitch">DBHS PORTAL</h1>
+  <button onclick="nextScreen(2)">ENTER</button>
+</div>
+
+<!-- 页面2 -->
+<div id="screen2" class="screen">
+  <h2>WELCOME</h2>
+  <p>Please type your name:</p>
+  <input id="nameInput" placeholder="nickname">
+  <br><br>
+  <button onclick="goToLinks()">CONTINUE</button>
+</div>
+
+<!-- 页面3 -->
+<div id="screen3" class="screen">
+  <h2 id="welcomeText"></h2>
+
+  <button onclick="go('https://discord.com')">
+    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
+    Discord
+  </button>
+
+  <button onclick="go('https://instagram.com')">
+    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+    Instagram
+  </button>
+
+  <button onclick="go('https://mail.google.com')">
+    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/732/732200.png">
+    Gmail
+  </button>
+
+  <button onclick="go('https://my.wvusd.org')">
+    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png">
+    Portal
+  </button>
+</div>
+
+<script>
+function nextScreen(num){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen'+num).classList.add('active');
+}
+
+function goToLinks(){
+  let name = document.getElementById("nameInput").value || "Guest";
+  document.getElementById("welcomeText").innerText = "Hello, " + name;
+  nextScreen(3);
+}
+
+function go(url){
+  window.open(url, '_blank');
+}
+
+/* Matrix代码雨 */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+let letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+letters = letters.split("");
+
+let fontSize = 14;
+let columns = canvas.width / fontSize;
+
+let drops = [];
+for (let i = 0; i < columns; i++) {
+  drops[i] = 1;
+}
+
+function draw() {
+  ctx.fillStyle = "rgba(0,0,0,0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#0F0";
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    let text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+      drops[i] = 0;
+
+    drops[i]++;
+  }
+}
+
+setInterval(draw, 33);
+</script>
+
+</body>
+</html>
