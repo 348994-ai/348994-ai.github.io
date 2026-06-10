@@ -2,28 +2,60 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Student Portal X</title>
+<title>Student Portal Hub</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial;
-    background: radial-gradient(circle at top, #111, #000);
+    font-family: Arial, sans-serif;
+    background: #0b0f14;
     color: white;
-    overflow-x: hidden;
+}
+
+/* HEADER */
+.header {
+    padding: 20px 40px;
+    background: #111826;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #222;
+}
+
+.header h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #00ff88;
+}
+
+/* NAV */
+.nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    background: #1a2230;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    background: #00ff88;
+    color: black;
 }
 
 /* HERO */
 .hero {
-    padding: 80px 40px;
-    text-align: center;
+    padding: 60px 40px;
 }
 
-.hero h1 {
-    font-size: 50px;
-    background: linear-gradient(90deg, limegreen, white);
-    -webkit-background-clip: text;
-    color: transparent;
+.hero h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
 }
 
 .hero p {
@@ -38,105 +70,159 @@ body {
     padding: 40px;
 }
 
+/* CARD */
 .card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: #141c28;
+    border: 1px solid #222;
+    border-radius: 12px;
     padding: 20px;
-    border-radius: 15px;
-    cursor: pointer;
     transition: 0.3s;
 }
 
 .card:hover {
-    transform: scale(1.05);
-    border-color: limegreen;
-    box-shadow: 0 0 20px rgba(0,255,0,0.2);
+    transform: translateY(-5px);
+    border-color: #00ff88;
 }
 
-/* GAME PAGE */
-#gamePage {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: black;
+.card h3 {
+    margin-top: 0;
+    color: #00ff88;
 }
 
-#w {
-    position: absolute;
-    font-size: 350px;
-    color: limegreen;
-    opacity: 0.1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-iframe {
-    position: absolute;
-    width: 90%;
-    height: 85%;
-    top: 7%;
-    left: 5%;
-    border-radius: 12px;
-    border: none;
-}
-
-.back {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: limegreen;
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #00ff88;
     color: black;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
     border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+<div class="header">
+    <h1>Student Portal Hub</h1>
+
+    <div class="nav">
+        <a href="https://sites.google.com/stu.wvusd.org/studentportal/home" target="_blank">
+            School Portal
+        </a>
+        <a href="#games">Games</a>
+        <a href="#tools">Tools</a>
+    </div>
+</div>
+
+<!-- HERO -->
 <div class="hero">
-    <h1>Student Portal X</h1>
-    <p>Fast · Clean · Game Hub · Minimal Pro UI</p>
+    <h2>Welcome Back 👋</h2>
+    <p>Your centralized student dashboard for school, tools, and games.</p>
+</div>
+
+<!-- SCHOOL SECTION -->
+<div class="grid">
+    <div class="card">
+        <h3>📚 School Portal</h3>
+        <p>Access your official student portal for assignments and announcements.</p>
+        <a class="btn" target="_blank"
+        href="https://sites.google.com/stu.wvusd.org/studentportal/home">
+        Open Portal
+        </a>
+    </div>
+
+    <div class="card">
+        <h3>📧 Gmail</h3>
+        <p>Check your school email and messages.</p>
+        <a class="btn" target="_blank" href="https://mail.google.com">
+        Open Gmail
+        </a>
+    </div>
+
+    <div class="card">
+        <h3>📅 Google Classroom</h3>
+        <p>View assignments and class updates.</p>
+        <a class="btn" target="_blank" href="https://classroom.google.com">
+        Open Classroom
+        </a>
+    </div>
+</div>
+
+<!-- GAMES -->
+<div class="hero" id="games">
+    <h2>🎮 Game Center</h2>
+    <p>Click any game to open in a new tab (100% works)</p>
 </div>
 
 <div class="grid">
-    <div class="card" onclick="openGame()">
-        🎮 Play Games
+
+    <div class="card">
+        <h3>Basketball Stars</h3>
+        <p>2-player basketball game.</p>
+        <a class="btn" target="_blank" href="https://basketball-stars.co">
+        Play Now
+        </a>
     </div>
 
-    <div class="card" onclick="alert('Stats opened')">
-        📊 Stats Dashboard
+    <div class="card">
+        <h3>8 Ball Pool</h3>
+        <p>Classic billiards game.</p>
+        <a class="btn" target="_blank" href="https://8ballpool.com/en/game">
+        Play Now
+        </a>
     </div>
 
-    <div class="card" onclick="alert('Coming soon')">
-        ⭐ Favorites
+    <div class="card">
+        <h3>Drive Mad</h3>
+        <p>Funny physics driving game.</p>
+        <a class="btn" target="_blank" href="https://poki.com/en/g/drive-mad">
+        Play Now
+        </a>
     </div>
 
-    <div class="card" onclick="alert('Settings opened')">
-        ⚙️ Settings
+    <div class="card">
+        <h3>Stickman Hook</h3>
+        <p>Swing and jump challenge game.</p>
+        <a class="btn" target="_blank" href="https://poki.com/en/g/stickman-hook">
+        Play Now
+        </a>
     </div>
+
 </div>
 
-<!-- GAME -->
-<div id="gamePage">
-    <div id="w">W</div>
-    <button class="back" onclick="closeGame()">← Back</button>
-    <iframe src="https://poki.com"></iframe>
+<!-- TOOLS -->
+<div class="hero" id="tools">
+    <h2>🛠 Tools</h2>
+    <p>Useful student tools</p>
 </div>
 
-<script>
-function openGame() {
-    document.getElementById("gamePage").style.display = "block";
-}
+<div class="grid">
 
-function closeGame() {
-    document.getElementById("gamePage").style.display = "none";
-}
-</script>
+    <div class="card">
+        <h3>Google Docs</h3>
+        <a class="btn" target="_blank" href="https://docs.google.com">
+        Open
+        </a>
+    </div>
+
+    <div class="card">
+        <h3>Google Drive</h3>
+        <a class="btn" target="_blank" href="https://drive.google.com">
+        Open
+        </a>
+    </div>
+
+    <div class="card">
+        <h3>Calculator</h3>
+        <a class="btn" target="_blank" href="https://www.google.com/search?q=calculator">
+        Open
+        </a>
+    </div>
+
+</div>
 
 </body>
 </html>
