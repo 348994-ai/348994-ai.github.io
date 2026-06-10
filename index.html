@@ -2,72 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Student Portal Hub</title>
+<title>Student Portal Hub V4</title>
 
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0b0f14;
+    background: #0a0f14;
     color: white;
+    display: flex;
 }
 
-/* HEADER */
-.header {
-    padding: 20px 40px;
-    background: #111826;
+/* SIDEBAR */
+.sidebar {
+    width: 80px;
+    height: 100vh;
+    background: #0f1722;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border-right: 1px solid #222;
+}
+
+.icon {
+    margin: 18px 0;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.2s;
+}
+
+.icon:hover {
+    color: #00ff88;
+    transform: scale(1.2);
+}
+
+/* MAIN */
+.main {
+    margin-left: 80px;
+    width: 100%;
+}
+
+/* TOPBAR */
+.topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 14px 20px;
+    background: #111826;
     border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
 }
 
-.header h1 {
-    font-size: 20px;
-    margin: 0;
+.topbar h1 {
+    font-size: 16px;
     color: #00ff88;
 }
 
-/* NAV */
-.nav {
-    display: flex;
-    gap: 15px;
-}
-
-.nav a {
-    color: white;
-    text-decoration: none;
-    padding: 8px 12px;
-    background: #1a2230;
+input {
+    padding: 7px 10px;
     border-radius: 8px;
-    transition: 0.3s;
+    border: none;
+    outline: none;
 }
 
-.nav a:hover {
-    background: #00ff88;
-    color: black;
+/* PAGE */
+.page {
+    display: none;
+    padding: 20px;
 }
 
-/* HERO */
-.hero {
-    padding: 60px 40px;
-}
-
-.hero h2 {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    opacity: 0.7;
+.page.active {
+    display: block;
 }
 
 /* GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 40px;
+    gap: 15px;
+    margin-top: 15px;
 }
 
 /* CARD */
@@ -75,154 +91,208 @@ body {
     background: #141c28;
     border: 1px solid #222;
     border-radius: 12px;
-    padding: 20px;
-    transition: 0.3s;
+    padding: 15px;
+    transition: 0.25s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     border-color: #00ff88;
 }
 
 .card h3 {
-    margin-top: 0;
+    margin: 0;
     color: #00ff88;
 }
 
+/* BUTTON */
 .btn {
     display: inline-block;
     margin-top: 10px;
-    padding: 8px 12px;
+    padding: 7px 10px;
     background: #00ff88;
     color: black;
     border-radius: 8px;
-    text-decoration: none;
+    cursor: pointer;
     font-weight: bold;
+}
+
+/* SMALL TEXT */
+.small {
+    opacity: 0.6;
+    font-size: 12px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-    <h1>Student Portal Hub</h1>
-
-    <div class="nav">
-        <a href="https://sites.google.com/stu.wvusd.org/studentportal/home" target="_blank">
-            School Portal
-        </a>
-        <a href="#games">Games</a>
-        <a href="#tools">Tools</a>
-    </div>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="icon" onclick="go('home')">🏠</div>
+    <div class="icon" onclick="go('games')">🎮</div>
+    <div class="icon" onclick="go('fav')">⭐</div>
+    <div class="icon" onclick="go('recent')">🕒</div>
+    <div class="icon" onclick="go('school')">📚</div>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-    <h2>Welcome Back 👋</h2>
-    <p>Your centralized student dashboard for school, tools, and games.</p>
+<!-- MAIN -->
+<div class="main">
+
+<div class="topbar">
+    <h1>Portal Hub V4</h1>
+    <input placeholder="Search games..." oninput="search(this.value)">
 </div>
 
-<!-- SCHOOL SECTION -->
-<div class="grid">
-    <div class="card">
-        <h3>📚 School Portal</h3>
-        <p>Access your official student portal for assignments and announcements.</p>
-        <a class="btn" target="_blank"
-        href="https://sites.google.com/stu.wvusd.org/studentportal/home">
-        Open Portal
-        </a>
-    </div>
+<!-- HOME -->
+<div id="home" class="page active">
+    <h2>Welcome 👋</h2>
+    <p class="small">Steam-style student portal system</p>
+</div>
 
-    <div class="card">
-        <h3>📧 Gmail</h3>
-        <p>Check your school email and messages.</p>
-        <a class="btn" target="_blank" href="https://mail.google.com">
-        Open Gmail
-        </a>
-    </div>
+<!-- SCHOOL -->
+<div id="school" class="page">
+    <h2>📚 School System</h2>
 
-    <div class="card">
-        <h3>📅 Google Classroom</h3>
-        <p>View assignments and class updates.</p>
-        <a class="btn" target="_blank" href="https://classroom.google.com">
-        Open Classroom
-        </a>
+    <div class="grid">
+        <div class="card">
+            <h3>Student Portal</h3>
+            <span class="btn" onclick="openLink('https://sites.google.com/stu.wvusd.org/studentportal/home')">Open</span>
+        </div>
+
+        <div class="card">
+            <h3>Google Classroom</h3>
+            <span class="btn" onclick="openLink('https://classroom.google.com')">Open</span>
+        </div>
+
+        <div class="card">
+            <h3>Gmail</h3>
+            <span class="btn" onclick="openLink('https://mail.google.com')">Open</span>
+        </div>
     </div>
 </div>
 
 <!-- GAMES -->
-<div class="hero" id="games">
-    <h2>🎮 Game Center</h2>
-    <p>Click any game to open in a new tab (100% works)</p>
+<div id="games" class="page">
+    <h2>🎮 Game Library</h2>
+
+    <div class="grid" id="gameBox">
+
+        <div class="card" data-name="basketball stars">
+            <h3>Basketball Stars</h3>
+            <span class="btn" onclick="play('https://basketball-stars.co', this)">Play</span>
+            <span class="btn" onclick="fav(this)">⭐</span>
+        </div>
+
+        <div class="card" data-name="8 ball pool">
+            <h3>8 Ball Pool</h3>
+            <span class="btn" onclick="play('https://8ballpool.com/en/game', this)">Play</span>
+            <span class="btn" onclick="fav(this)">⭐</span>
+        </div>
+
+        <div class="card" data-name="drive mad">
+            <h3>Drive Mad</h3>
+            <span class="btn" onclick="play('https://poki.com/en/g/drive-mad', this)">Play</span>
+            <span class="btn" onclick="fav(this)">⭐</span>
+        </div>
+
+        <div class="card" data-name="stickman hook">
+            <h3>Stickman Hook</h3>
+            <span class="btn" onclick="play('https://poki.com/en/g/stickman-hook', this)">Play</span>
+            <span class="btn" onclick="fav(this)">⭐</span>
+        </div>
+
+    </div>
 </div>
 
-<div class="grid">
+<!-- FAVORITES -->
+<div id="fav" class="page">
+    <h2>⭐ Favorites</h2>
+    <div class="grid" id="favBox"></div>
+</div>
 
-    <div class="card">
-        <h3>Basketball Stars</h3>
-        <p>2-player basketball game.</p>
-        <a class="btn" target="_blank" href="https://basketball-stars.co">
-        Play Now
-        </a>
-    </div>
-
-    <div class="card">
-        <h3>8 Ball Pool</h3>
-        <p>Classic billiards game.</p>
-        <a class="btn" target="_blank" href="https://8ballpool.com/en/game">
-        Play Now
-        </a>
-    </div>
-
-    <div class="card">
-        <h3>Drive Mad</h3>
-        <p>Funny physics driving game.</p>
-        <a class="btn" target="_blank" href="https://poki.com/en/g/drive-mad">
-        Play Now
-        </a>
-    </div>
-
-    <div class="card">
-        <h3>Stickman Hook</h3>
-        <p>Swing and jump challenge game.</p>
-        <a class="btn" target="_blank" href="https://poki.com/en/g/stickman-hook">
-        Play Now
-        </a>
-    </div>
+<!-- RECENT -->
+<div id="recent" class="page">
+    <h2>🕒 Recently Played</h2>
+    <div class="grid" id="recentBox"></div>
+</div>
 
 </div>
 
-<!-- TOOLS -->
-<div class="hero" id="tools">
-    <h2>🛠 Tools</h2>
-    <p>Useful student tools</p>
-</div>
+<script>
 
-<div class="grid">
+let fav = JSON.parse(localStorage.getItem("fav")) || [];
+let recent = JSON.parse(localStorage.getItem("recent")) || [];
 
-    <div class="card">
-        <h3>Google Docs</h3>
-        <a class="btn" target="_blank" href="https://docs.google.com">
-        Open
-        </a>
-    </div>
+/* NAV SYSTEM (SPA) */
+function go(page) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(page).classList.add("active");
+}
 
-    <div class="card">
-        <h3>Google Drive</h3>
-        <a class="btn" target="_blank" href="https://drive.google.com">
-        Open
-        </a>
-    </div>
+/* OPEN LINK */
+function openLink(url) {
+    window.open(url, "_blank");
+}
 
-    <div class="card">
-        <h3>Calculator</h3>
-        <a class="btn" target="_blank" href="https://www.google.com/search?q=calculator">
-        Open
-        </a>
-    </div>
+/* PLAY GAME */
+function play(url, el) {
+    window.open(url, "_blank");
 
-</div>
+    let name = el.parentElement.querySelector("h3").innerText;
+
+    recent.unshift(name);
+    recent = [...new Set(recent)].slice(0, 6);
+
+    localStorage.setItem("recent", JSON.stringify(recent));
+    updateRecent();
+}
+
+/* FAVORITE */
+function fav(el) {
+    let name = el.parentElement.querySelector("h3").innerText;
+
+    if (!fav.includes(name)) fav.push(name);
+
+    localStorage.setItem("fav", JSON.stringify(fav));
+    updateFav();
+}
+
+/* UPDATE FAVORITES */
+function updateFav() {
+    let box = document.getElementById("favBox");
+    box.innerHTML = "";
+    fav.forEach(n => {
+        let d = document.createElement("div");
+        d.className = "card";
+        d.innerHTML = `<h3>${n}</h3>`;
+        box.appendChild(d);
+    });
+}
+
+/* UPDATE RECENT */
+function updateRecent() {
+    let box = document.getElementById("recentBox");
+    box.innerHTML = "";
+    recent.forEach(n => {
+        let d = document.createElement("div");
+        d.className = "card";
+        d.innerHTML = `<h3>${n}</h3>`;
+        box.appendChild(d);
+    });
+}
+
+/* SEARCH */
+function search(v) {
+    document.querySelectorAll("#gameBox .card").forEach(c => {
+        c.style.display = c.innerText.toLowerCase().includes(v.toLowerCase()) ? "block" : "none";
+    });
+}
+
+updateFav();
+updateRecent();
+
+</script>
 
 </body>
 </html>
