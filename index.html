@@ -7,88 +7,75 @@
 <style>
 body {
   margin: 0;
-  font-family: monospace;
   background: black;
-  color: #00ff00;
-  text-align: center;
+  color: #00ff88;
+  font-family: monospace;
   overflow: hidden;
 }
 
-/* 字体更大更粗 */
-h1, h2, p {
-  font-weight: bold;
-}
-
-h1 { font-size: 50px; }
-h2 { font-size: 30px; }
-p { font-size: 18px; }
-
-/* 屏幕切换 */
-.screen {
-  display: none;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-  z-index: 2;
-}
-
-.active {
-  display: flex;
-}
-
-/* 按钮 */
-button {
-  background: black;
-  border: 1px solid #00ff00;
-  color: #00ff00;
-  padding: 12px 25px;
-  margin: 12px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background: #00ff00;
-  color: black;
-}
-
-/* 输入框 */
-input {
-  background: black;
-  border: 1px solid #00ff00;
-  color: #00ff00;
-  padding: 10px;
-  font-size: 16px;
-}
-
-/* glitch效果 */
-.glitch {
-  animation: flicker 1s infinite;
-}
-
-@keyframes flicker {
-  0% {opacity:1;}
-  50% {opacity:0.6;}
-  100% {opacity:1;}
-}
-
-/* 代码雨背景 */
+/* 背景代码雨 */
 canvas {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
 }
 
-/* 图标 */
-.icon {
-  width: 24px;
-  height: 24px;
-  display: block;
-  margin: 0 auto 5px;
+/* 首页 */
+#home {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.logo {
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 第二页 */
+#menu {
+  display: none;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.btn {
+  display: block;
+  margin: 15px auto;
+  padding: 12px;
+  width: 250px;
+  border: 1px solid #00ff88;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #00ff88;
+  color: black;
+}
+
+/* game 页面 */
+#games {
+  display: none;
+  text-align: center;
+  padding-top: 60px;
+}
+
+.bigW {
+  font-size: 120px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
 </style>
 </head>
 
@@ -96,85 +83,79 @@ canvas {
 
 <canvas id="matrix"></canvas>
 
-<!-- 页面1 -->
-<div id="screen1" class="screen active">
-  <h1 class="glitch">DBHS PORTAL</h1>
-  <button onclick="nextScreen(2)">ENTER</button>
+<!-- 首页 -->
+<div id="home">
+  <div class="logo" onclick="goMenu()">CLICK TO ENTER</div>
 </div>
 
-<!-- 页面2 -->
-<div id="screen2" class="screen">
-  <h2>WELCOME</h2>
-  <p>Please type your name:</p>
-  <input id="nameInput" placeholder="nickname">
-  <br><br>
-  <button onclick="goToLinks()">CONTINUE</button>
+<!-- 菜单 -->
+<div id="menu">
+  <div class="title">Welcome</div>
+
+  <div class="btn" onclick="openLink('https://discord.com')">Discord</div>
+  <div class="btn" onclick="openLink('https://instagram.com')">Instagram</div>
+  <div class="btn" onclick="openLink('https://mail.google.com')">Gmail</div>
+  <div class="btn" onclick="openLink('https://sites.google.com/stu.wvusd.org/studentportal/home')">Student Portal</div>
+
+  <div class="btn" onclick="goGames()">🎮 Games</div>
 </div>
 
-<!-- 页面3 -->
-<div id="screen3" class="screen">
-  <h2 id="welcomeText"></h2>
+<!-- 游戏页 -->
+<div id="games">
+  <div class="bigW">W</div>
 
-  <button onclick="go('https://discord.com')">
-    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
-    Discord
-  </button>
+  <div class="btn" onclick="openLink('https://poki.com')">Poki</div>
+  <div class="btn" onclick="openLink('https://random-basketball.github.io/')">Basketball Random</div>
+  <div class="btn" onclick="openLink('https://sites.google.com/stu.wvusd.org/tingheilovesqq/home')">tingheilovesqq</div>
+  <div class="btn" onclick="openLink('https://soccer-randomx.github.io/')">Soccer Random</div>
 
-  <button onclick="go('https://instagram.com')">
-    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
-    Instagram
-  </button>
-
-  <button onclick="go('https://mail.google.com')">
-    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/732/732200.png">
-    Gmail
-  </button>
-
-  <button onclick="go('https://my.wvusd.org')">
-    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png">
-    Portal
-  </button>
+  <div class="btn" onclick="back()">⬅ Back</div>
 </div>
 
 <script>
-function nextScreen(num){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen'+num).classList.add('active');
+
+/* 页面切换 */
+function goMenu() {
+  document.getElementById("home").style.display = "none";
+  document.getElementById("menu").style.display = "block";
 }
 
-function goToLinks(){
-  let name = document.getElementById("nameInput").value || "Guest";
-  document.getElementById("welcomeText").innerText = "Hello, " + name;
-  nextScreen(3);
+function goGames() {
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("games").style.display = "block";
 }
 
-function go(url){
-  window.open(url, '_blank');
+function back() {
+  document.getElementById("games").style.display = "none";
+  document.getElementById("menu").style.display = "block";
 }
 
-/* Matrix代码雨 */
+function openLink(url) {
+  window.open(url, "_blank");
+}
+
+/* 黑客代码雨效果 */
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
-let letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let letters = "01";
 letters = letters.split("");
 
 let fontSize = 14;
 let columns = canvas.width / fontSize;
 
 let drops = [];
-for (let i = 0; i < columns; i++) {
-  drops[i] = 1;
-}
+for (let x = 0; x < columns; x++)
+  drops[x] = 1;
 
 function draw() {
-  ctx.fillStyle = "rgba(0,0,0,0.05)";
+  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = "#0F0";
+  ctx.fillStyle = "#00ff88";
   ctx.font = fontSize + "px monospace";
 
   for (let i = 0; i < drops.length; i++) {
@@ -189,6 +170,7 @@ function draw() {
 }
 
 setInterval(draw, 33);
+
 </script>
 
 </body>
