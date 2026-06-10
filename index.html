@@ -1,51 +1,4 @@
 <!DOCTYPE html>
-<!-- TOOLS SECTION -->
-<div class="section">
-    <h2>🛠 Study Tools</h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3>Google Docs</h3>
-            <a class="btn" target="_blank" href="https://docs.google.com">
-                Open
-            </a>
-        </div>
-
-        <div class="card">
-            <h3>Kahoot</h3>
-            <a class="btn" target="_blank" href="https://kahoot.it">
-                Open
-            </a>
-        </div>
-
-        <div class="card">
-            <h3>Gimkit</h3>
-            <a class="btn" target="_blank" href="https://www.gimkit.com">
-                Open
-            </a>
-        </div>
-
-        <div class="card">
-            <h3>Blooket</h3>
-            <a class="btn" target="_blank" href="https://www.blooket.com">
-                Open
-            </a>
-        </div>
-
-    </div>
-</div>
-
-<!-- FUNNY LINE -->
-<div class="section">
-    <h2>😂 Daily Joke</h2>
-
-    <div class="card">
-        <p style="font-size:16px;">
-            “Why don’t students trust stairs? Because they’re always up to something.”
-        </p>
-    </div>
-</div>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -58,7 +11,7 @@ body {
     color: white;
 }
 
-/* ===== LOCK SCREEN ===== */
+/* LOCK SCREEN */
 #lock {
     position: fixed;
     width: 100%;
@@ -72,21 +25,13 @@ body {
 }
 
 #lock h1 {
-    font-size: 26px;
     letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-#lock p {
-    opacity: 0.6;
-    margin-bottom: 20px;
 }
 
 #lock input {
     padding: 10px;
     border-radius: 8px;
     border: none;
-    outline: none;
     width: 220px;
     text-align: center;
 }
@@ -94,19 +39,20 @@ body {
 #lock button {
     margin-top: 10px;
     padding: 8px 14px;
+    background: #00ff88;
     border: none;
     border-radius: 8px;
-    background: #00ff88;
-    font-weight: bold;
     cursor: pointer;
+    font-weight: bold;
 }
 
-/* ===== MAIN SITE ===== */
+/* MAIN BACKGROUND */
 body {
     background: url('https://images.unsplash.com/photo-1518770660439-4636190af475') no-repeat center center fixed;
     background-size: cover;
 }
 
+/* HEADER */
 header {
     display: flex;
     justify-content: space-between;
@@ -128,18 +74,21 @@ nav a {
     border-radius: 8px;
 }
 
+/* SECTION */
 .section {
     padding: 25px;
     background: rgba(0,0,0,0.55);
 }
 
+/* GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 15px;
     margin-top: 15px;
 }
 
+/* CARD */
 .card {
     background: rgba(255,255,255,0.08);
     padding: 15px;
@@ -161,28 +110,21 @@ nav a {
     text-decoration: none;
     font-weight: bold;
 }
-
-/* FOOTER NAME */
-footer {
-    text-align: center;
-    padding: 20px;
-    opacity: 0.6;
-}
 </style>
 </head>
 
 <body>
 
-<!-- LOCK SCREEN -->
+<!-- LOCK -->
 <div id="lock">
     <h1>SECURE ACCESS</h1>
-    <p>Enter Portal Password</p>
+    <p>Enter Password</p>
     <input id="pw" type="password" placeholder="Password">
     <button onclick="check()">ENTER</button>
-    <p style="margin-top:20px;font-size:12px;">lucas wang (2026)</p>
+    <p style="margin-top:15px;opacity:0.6;">lucas wang (2026)</p>
 </div>
 
-<!-- MAIN SITE -->
+<!-- MAIN -->
 <div id="main" style="display:none;">
 
 <header>
@@ -190,7 +132,7 @@ footer {
     <nav>
         <a target="_blank" href="https://dbhs.wvusd.org/">School</a>
         <a target="_blank" href="https://sites.google.com/stu.wvusd.org/tingheilovesqq/bookmarks/pizza">Games</a>
-        <a href="#trends">Trends</a>
+        <a href="#tools">Tools</a>
     </nav>
 </header>
 
@@ -205,6 +147,11 @@ footer {
         </div>
 
         <div class="card">
+            <h3>DBHS Official</h3>
+            <a class="btn" target="_blank" href="https://dbhs.wvusd.org/">Open</a>
+        </div>
+
+        <div class="card">
             <h3>Google Classroom</h3>
             <a class="btn" target="_blank" href="https://classroom.google.com">Open</a>
         </div>
@@ -216,38 +163,76 @@ footer {
     </div>
 </div>
 
-<!-- TRENDS -->
-<div class="section" id="trends">
-    <h2>🔥 Trending YouTube</h2>
+<!-- YOUTUBE / FUN -->
+<div class="section">
+    <h2>🔥 YouTube / Trending</h2>
 
     <div class="grid">
 
         <div class="card">
             <h3>iShowSpeed Chaos</h3>
-            <a class="btn" target="_blank" href="https://www.youtube.com/results?search_query=ishowspeed+funny+moments">Watch</a>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=ishowspeed+funny+moments">Watch</a>
         </div>
 
         <div class="card">
             <h3>NBA Funny Moments</h3>
-            <a class="btn" target="_blank" href="https://www.youtube.com/results?search_query=nba+funny+moments">Watch</a>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=nba+funny+moments">Watch</a>
         </div>
 
         <div class="card">
             <h3>MrBeast Videos</h3>
-            <a class="btn" target="_blank" href="https://www.youtube.com/results?search_query=mrbeast+latest">Watch</a>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=mrbeast+latest">Watch</a>
         </div>
 
         <div class="card">
-            <h3>TikTok Memes</h3>
-            <a class="btn" target="_blank" href="https://www.youtube.com/results?search_query=tiktok+memes">Watch</a>
+            <h3>Meme Compilation</h3>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=funny+memes+compilation">Watch</a>
         </div>
 
     </div>
 </div>
 
-<footer>
-    lucas wang (2026)
-</footer>
+<!-- TOOLS -->
+<div class="section" id="tools">
+    <h2>🛠 Study Tools</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Google Docs</h3>
+            <a class="btn" target="_blank" href="https://docs.google.com">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>Kahoot</h3>
+            <a class="btn" target="_blank" href="https://kahoot.it">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>Gimkit</h3>
+            <a class="btn" target="_blank" href="https://www.gimkit.com">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>Blooket</h3>
+            <a class="btn" target="_blank" href="https://www.blooket.com">Open</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- JOKE -->
+<div class="section">
+    <h2>😂 Joke of the Day</h2>
+
+    <div class="card">
+        <p>Why don’t students trust stairs? Because they’re always up to something.</p>
+    </div>
+</div>
 
 </div>
 
