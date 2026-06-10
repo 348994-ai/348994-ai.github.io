@@ -2,90 +2,89 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Student Portal Hub</title>
+<title>Student Portal Hub Ultra</title>
 
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0b0f14;
     color: white;
+    background: url('https://images.unsplash.com/photo-1518770660439-4636190af475') no-repeat center center fixed;
+    background-size: cover;
 }
 
-/* HEADER */
-.header {
-    padding: 18px 25px;
-    background: #111826;
+/* TOP BAR */
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #222;
+    padding: 15px 25px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
 }
 
-.header h1 {
+header h1 {
     margin: 0;
     color: #00ff88;
-    font-size: 18px;
 }
 
-.nav a {
-    color: white;
+nav a {
+    margin-left: 10px;
     text-decoration: none;
-    margin-left: 12px;
+    color: white;
     padding: 6px 10px;
-    background: #1a2230;
+    background: rgba(255,255,255,0.1);
     border-radius: 8px;
 }
 
-.nav a:hover {
+nav a:hover {
     background: #00ff88;
     color: black;
 }
 
-/* HERO */
-.hero {
-    padding: 40px 25px 10px;
-}
-
-.hero h2 {
-    margin: 0;
-    font-size: 30px;
-}
-
-.hero p {
-    opacity: 0.7;
+/* SECTION */
+.section {
+    padding: 25px;
+    background: rgba(0,0,0,0.55);
 }
 
 /* GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 15px;
-    padding: 20px 25px;
+    margin-top: 15px;
 }
 
 /* CARD */
 .card {
-    background: #141c28;
-    border: 1px solid #222;
+    background: rgba(255,255,255,0.08);
     border-radius: 12px;
     padding: 15px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
 }
 
-.card h3 {
-    margin-top: 0;
-    color: #00ff88;
+.card:hover {
+    transform: scale(1.03);
+    background: rgba(0,255,136,0.15);
 }
 
 .btn {
     display: inline-block;
     margin-top: 10px;
-    padding: 8px 10px;
+    padding: 7px 10px;
     background: #00ff88;
     color: black;
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
+}
+
+/* SMALL LABEL */
+.small {
+    opacity: 0.7;
+    font-size: 13px;
 }
 </style>
 </head>
@@ -93,108 +92,132 @@ body {
 <body>
 
 <!-- HEADER -->
-<div class="header">
-    <h1>Student Portal Hub</h1>
-    <div class="nav">
-        <a href="#school">School</a>
-        <a href="#games">Games</a>
-        <a href="#tools">Tools</a>
-    </div>
-</div>
+<header>
+    <h1>🎓 Student Portal Ultra</h1>
 
-<!-- HERO -->
-<div class="hero">
-    <h2>Welcome 👋</h2>
-    <p>All-in-one student dashboard: school, tools, and games</p>
-</div>
+    <nav>
+        <a target="_blank" href="https://dbhs.wvusd.org/">School</a>
+        <a target="_blank" href="https://sites.google.com/stu.wvusd.org/tingheilovesqq/bookmarks/pizza">Games</a>
+        <a href="#trends">Trends</a>
+    </nav>
+</header>
 
 <!-- SCHOOL -->
-<div id="school" class="grid">
-    <div class="card">
-        <h3>Student Portal</h3>
-        <a class="btn" target="_blank"
-        href="https://sites.google.com/stu.wvusd.org/studentportal/home">
-        Open
-        </a>
-    </div>
+<div class="section">
+    <h2>📚 School Hub</h2>
 
-    <div class="card">
-        <h3>Google Classroom</h3>
-        <a class="btn" target="_blank" href="https://classroom.google.com">Open</a>
-    </div>
+    <div class="grid">
+        <div class="card">
+            <h3>Student Portal</h3>
+            <a class="btn" target="_blank"
+            href="https://sites.google.com/stu.wvusd.org/studentportal/home">Open</a>
+        </div>
 
-    <div class="card">
-        <h3>Gmail</h3>
-        <a class="btn" target="_blank" href="https://mail.google.com">Open</a>
-    </div>
+        <div class="card">
+            <h3>Google Classroom</h3>
+            <a class="btn" target="_blank"
+            href="https://classroom.google.com">Open</a>
+        </div>
 
-    <div class="card">
-        <h3>Google Drive</h3>
-        <a class="btn" target="_blank" href="https://drive.google.com">Open</a>
+        <div class="card">
+            <h3>Gmail</h3>
+            <a class="btn" target="_blank"
+            href="https://mail.google.com">Open</a>
+        </div>
     </div>
 </div>
 
-<!-- GAMES -->
-<div id="games" class="hero">
-    <h2>🎮 Game Center</h2>
+<!-- TRENDS -->
+<div class="section" id="trends">
+    <h2>🔥 Trending / YouTube Zone</h2>
+    <p class="small">Click anything — all opens directly in YouTube</p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>😂 iShowSpeed Chaos</h3>
+            <p class="small">funny rage & reactions</p>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=ishowspeed+funny+moments">
+            Watch
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>🔥 Speed Reacts World Cup</h3>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=ishowspeed+world+cup+moments">
+            Watch
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>💀 Funny TikTok Memes</h3>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=tiktok+memes+compilation">
+            Watch
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>🏀 NBA Funny Moments</h3>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=nba+funny+moments">
+            Watch
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>💥 MrBeast Challenges</h3>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=mrbeast+latest+video">
+            Watch
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>🎮 Gaming Rage Moments</h3>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=funny+gaming+moments">
+            Watch
+            </a>
+        </div>
+
+    </div>
 </div>
 
-<div class="grid">
+<!-- CHARTS (CLICKABLE DASHBOARD STYLE) -->
+<div class="section">
+    <h2>📊 Trending Dashboard</h2>
 
-    <div class="card">
-        <h3>Basketball Stars</h3>
-        <a class="btn" target="_blank" href="https://basketball-stars.co">Play</a>
+    <div class="grid">
+
+        <div class="card">
+            <h3>YouTube Trending</h3>
+            <p class="small">real-time hot videos</p>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/feed/trending">
+            Open
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Shorts Feed</h3>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/shorts">
+            Open
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Gaming Trends</h3>
+            <a class="btn" target="_blank"
+            href="https://www.youtube.com/results?search_query=trending+gaming+2026">
+            Open
+            </a>
+        </div>
+
     </div>
-
-    <div class="card">
-        <h3>8 Ball Pool</h3>
-        <a class="btn" target="_blank" href="https://8ballpool.com/en/game">Play</a>
-    </div>
-
-    <div class="card">
-        <h3>Drive Mad</h3>
-        <a class="btn" target="_blank" href="https://poki.com/en/g/drive-mad">Play</a>
-    </div>
-
-    <div class="card">
-        <h3>Stickman Hook</h3>
-        <a class="btn" target="_blank" href="https://poki.com/en/g/stickman-hook">Play</a>
-    </div>
-
-    <div class="card">
-        <h3>Temple Run 2</h3>
-        <a class="btn" target="_blank" href="https://poki.com/en/g/temple-run-2">Play</a>
-    </div>
-
-    <div class="card">
-        <h3>Subway Surfers</h3>
-        <a class="btn" target="_blank" href="https://poki.com/en/g/subway-surfers">Play</a>
-    </div>
-
-</div>
-
-<!-- TOOLS -->
-<div id="tools" class="hero">
-    <h2>🛠 Tools</h2>
-</div>
-
-<div class="grid">
-
-    <div class="card">
-        <h3>Docs</h3>
-        <a class="btn" target="_blank" href="https://docs.google.com">Open</a>
-    </div>
-
-    <div class="card">
-        <h3>Calculator</h3>
-        <a class="btn" target="_blank" href="https://www.google.com/search?q=calculator">Open</a>
-    </div>
-
-    <div class="card">
-        <h3>Translate</h3>
-        <a class="btn" target="_blank" href="https://translate.google.com">Open</a>
-    </div>
-
 </div>
 
 </body>
