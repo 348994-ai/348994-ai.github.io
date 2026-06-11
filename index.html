@@ -8,10 +8,11 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background: black;
     color: white;
 }
 
-/* LOCK SCREEN */
+/* LOCK */
 #lock {
     position: fixed;
     width: 100%;
@@ -22,10 +23,6 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-}
-
-#lock h1 {
-    letter-spacing: 2px;
 }
 
 #lock input {
@@ -43,72 +40,44 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
 }
 
-/* MAIN BACKGROUND */
-body {
-    background: url('https://images.unsplash.com/photo-1518770660439-4636190af475') no-repeat center center fixed;
-    background-size: cover;
+/* MAIN */
+#main {
+    display: none;
 }
 
 /* HEADER */
 header {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 25px;
-    background: rgba(0,0,0,0.7);
-}
-
-header h1 {
-    color: #00ff88;
-    margin: 0;
-}
-
-nav a {
-    margin-left: 10px;
-    text-decoration: none;
-    color: white;
-    padding: 6px 10px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
-}
-
-/* SECTION */
-.section {
-    padding: 25px;
-    background: rgba(0,0,0,0.55);
+    text-align: center;
+    padding: 20px;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 /* GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 25px;
+    padding: 25px;
 }
 
-/* CARD */
-.card {
-    background: rgba(255,255,255,0.08);
-    padding: 15px;
-    border-radius: 12px;
+/* ICON */
+.app {
+    text-align: center;
+    cursor: pointer;
 }
 
-.card h3 {
-    margin-top: 0;
-    color: #00ff88;
+.app img {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
 }
 
-.btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 7px 10px;
-    background: #00ff88;
-    color: black;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
+.app p {
+    margin-top: 8px;
+    font-size: 14px;
 }
 </style>
 </head>
@@ -118,120 +87,72 @@ nav a {
 <!-- LOCK -->
 <div id="lock">
     <h1>SECURE ACCESS</h1>
-    <p>Enter Password</p>
     <input id="pw" type="password" placeholder="Password">
     <button onclick="check()">ENTER</button>
-    <p style="margin-top:15px;opacity:0.6;">lucas wang (2026)</p>
 </div>
 
 <!-- MAIN -->
-<div id="main" style="display:none;">
+<div id="main">
 
-<header>
-    <h1>🎓 Student Portal Ultra</h1>
-    <nav>
-        <a target="_blank" href="https://dbhs.wvusd.org/">School</a>
-        <a target="_blank" href="https://sites.google.com/stu.wvusd.org/tingheilovesqq/bookmarks/pizza">Games</a>
-        <a href="#tools">Tools</a>
-    </nav>
-</header>
+<header>🎓 Student Portal</header>
 
-<!-- SCHOOL -->
-<div class="section">
-    <h2>📚 School Hub</h2>
+<div class="grid">
 
-    <div class="grid">
-        <div class="card">
-            <h3>Student Portal</h3>
-            <a class="btn" target="_blank" href="https://sites.google.com/stu.wvusd.org/studentportal/home">Open</a>
-        </div>
-
-        <div class="card">
-            <h3>DBHS Official</h3>
-            <a class="btn" target="_blank" href="https://dbhs.wvusd.org/">Open</a>
-        </div>
-
-        <div class="card">
-            <h3>Google Classroom</h3>
-            <a class="btn" target="_blank" href="https://classroom.google.com">Open</a>
-        </div>
-
-        <div class="card">
-            <h3>Gmail</h3>
-            <a class="btn" target="_blank" href="https://mail.google.com">Open</a>
-        </div>
-    </div>
+<div class="app" onclick="openSite('https://classroom.google.com')">
+<img src="https://ssl.gstatic.com/classroom/favicon.png">
+<p>Classroom</p>
 </div>
 
-<!-- YOUTUBE / FUN -->
-<div class="section">
-    <h2>🔥 YouTube / Trending</h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3>iShowSpeed Chaos</h3>
-            <a class="btn" target="_blank"
-            href="https://www.youtube.com/results?search_query=ishowspeed+funny+moments">Watch</a>
-        </div>
-
-        <div class="card">
-            <h3>NBA Funny Moments</h3>
-            <a class="btn" target="_blank"
-            href="https://www.youtube.com/results?search_query=nba+funny+moments">Watch</a>
-        </div>
-
-        <div class="card">
-            <h3>MrBeast Videos</h3>
-            <a class="btn" target="_blank"
-            href="https://www.youtube.com/results?search_query=mrbeast+latest">Watch</a>
-        </div>
-
-        <div class="card">
-            <h3>Meme Compilation</h3>
-            <a class="btn" target="_blank"
-            href="https://www.youtube.com/results?search_query=funny+memes+compilation">Watch</a>
-        </div>
-
-    </div>
+<div class="app" onclick="openSite('https://mail.google.com')">
+<img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico">
+<p>Gmail</p>
 </div>
 
-<!-- TOOLS -->
-<div class="section" id="tools">
-    <h2>🛠 Study Tools</h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3>Google Docs</h3>
-            <a class="btn" target="_blank" href="https://docs.google.com">Open</a>
-        </div>
-
-        <div class="card">
-            <h3>Kahoot</h3>
-            <a class="btn" target="_blank" href="https://kahoot.it">Open</a>
-        </div>
-
-        <div class="card">
-            <h3>Gimkit</h3>
-            <a class="btn" target="_blank" href="https://www.gimkit.com">Open</a>
-        </div>
-
-        <div class="card">
-            <h3>Blooket</h3>
-            <a class="btn" target="_blank" href="https://www.blooket.com">Open</a>
-        </div>
-
-    </div>
+<div class="app" onclick="openSite('https://docs.google.com')">
+<img src="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">
+<p>Docs</p>
 </div>
 
-<!-- JOKE -->
-<div class="section">
-    <h2>😂 Joke of the Day</h2>
+<div class="app" onclick="openSite('https://slides.google.com')">
+<img src="https://ssl.gstatic.com/docs/presentations/images/favicon5.ico">
+<p>Slides</p>
+</div>
 
-    <div class="card">
-        <p>Why don’t students trust stairs? Because they’re always up to something.</p>
-    </div>
+<div class="app" onclick="openSite('https://drive.google.com')">
+<img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png">
+<p>Drive</p>
+</div>
+
+<div class="app" onclick="openSite('https://kahoot.it')">
+<img src="https://kahoot.com/files/2020/10/Kahoot-Logo.png">
+<p>Kahoot</p>
+</div>
+
+<div class="app" onclick="openSite('https://www.gimkit.com')">
+<img src="https://www.gimkit.com/favicon.ico">
+<p>Gimkit</p>
+</div>
+
+<div class="app" onclick="openSite('https://www.blooket.com')">
+<img src="https://www.blooket.com/favicon.ico">
+<p>Blooket</p>
+</div>
+
+<div class="app" onclick="openSite('https://poki.com')">
+<img src="https://poki.com/favicon.ico">
+<p>Poki</p>
+</div>
+
+<div class="app" onclick="openSite('https://youtube.com')">
+<img src="https://www.youtube.com/s/desktop/fe0d3b1c/img/favicon_144x144.png">
+<p>YouTube</p>
+</div>
+
+<div class="app" onclick="openSite('https://dbhs.wvusd.org')">
+<img src="https://www.google.com/s2/favicons?domain=dbhs.wvusd.org">
+<p>School</p>
+</div>
+
 </div>
 
 </div>
@@ -245,6 +166,10 @@ function check() {
     } else {
         alert("Wrong password");
     }
+}
+
+function openSite(url) {
+    window.open(url, "_blank");
 }
 </script>
 
