@@ -2,27 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Student Portal Ultra</title>
+<title>Student Portal</title>
 
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: black;
+    background: #0a0f14;
     color: white;
 }
 
-/* LOCK */
+/* LOCK SCREEN */
 #lock {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: #0a0f14;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+}
+
+#lock h1 {
+    margin-bottom: 10px;
+    letter-spacing: 2px;
 }
 
 #lock input {
@@ -31,6 +34,7 @@ body {
     border: none;
     width: 220px;
     text-align: center;
+    font-size: 16px;
 }
 
 #lock button {
@@ -40,136 +44,34 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-}
-
-/* MAIN */
-#main {
-    display: none;
-}
-
-/* HEADER */
-header {
-    text-align: center;
-    padding: 20px;
-    font-size: 28px;
     font-weight: bold;
 }
 
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 25px;
-    padding: 25px;
-}
-
-/* ICON */
-.app {
-    text-align: center;
-    cursor: pointer;
-}
-
-.app img {
-    width: 60px;
-    height: 60px;
-    border-radius: 15px;
-}
-
-.app p {
-    margin-top: 8px;
-    font-size: 14px;
+#lock button:hover {
+    background: #00cc70;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOCK -->
+<!-- LOCK SCREEN -->
 <div id="lock">
     <h1>SECURE ACCESS</h1>
-    <input id="pw" type="password" placeholder="Password">
+    <input id="pw" type="password" placeholder="Enter Password">
     <button onclick="check()">ENTER</button>
-</div>
-
-<!-- MAIN -->
-<div id="main">
-
-<header>🎓 Student Portal</header>
-
-<div class="grid">
-
-<div class="app" onclick="openSite('https://classroom.google.com')">
-<img src="https://ssl.gstatic.com/classroom/favicon.png">
-<p>Classroom</p>
-</div>
-
-<div class="app" onclick="openSite('https://mail.google.com')">
-<img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico">
-<p>Gmail</p>
-</div>
-
-<div class="app" onclick="openSite('https://docs.google.com')">
-<img src="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">
-<p>Docs</p>
-</div>
-
-<div class="app" onclick="openSite('https://slides.google.com')">
-<img src="https://ssl.gstatic.com/docs/presentations/images/favicon5.ico">
-<p>Slides</p>
-</div>
-
-<div class="app" onclick="openSite('https://drive.google.com')">
-<img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png">
-<p>Drive</p>
-</div>
-
-<div class="app" onclick="openSite('https://kahoot.it')">
-<img src="https://kahoot.com/files/2020/10/Kahoot-Logo.png">
-<p>Kahoot</p>
-</div>
-
-<div class="app" onclick="openSite('https://www.gimkit.com')">
-<img src="https://www.gimkit.com/favicon.ico">
-<p>Gimkit</p>
-</div>
-
-<div class="app" onclick="openSite('https://www.blooket.com')">
-<img src="https://www.blooket.com/favicon.ico">
-<p>Blooket</p>
-</div>
-
-<div class="app" onclick="openSite('https://poki.com')">
-<img src="https://poki.com/favicon.ico">
-<p>Poki</p>
-</div>
-
-<div class="app" onclick="openSite('https://youtube.com')">
-<img src="https://www.youtube.com/s/desktop/fe0d3b1c/img/favicon_144x144.png">
-<p>YouTube</p>
-</div>
-
-<div class="app" onclick="openSite('https://dbhs.wvusd.org')">
-<img src="https://www.google.com/s2/favicons?domain=dbhs.wvusd.org">
-<p>School</p>
-</div>
-
-</div>
-
 </div>
 
 <script>
 function check() {
     let pw = document.getElementById("pw").value;
+
     if (pw === "111222") {
-        document.getElementById("lock").style.display = "none";
-        document.getElementById("main").style.display = "block";
+        // 直接跳转到学生门户
+        window.location.href = "https://sites.google.com/stu.wvusd.org/studentportal/home";
     } else {
         alert("Wrong password");
     }
-}
-
-function openSite(url) {
-    window.open(url, "_blank");
 }
 </script>
 
